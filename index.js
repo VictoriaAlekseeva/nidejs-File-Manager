@@ -9,6 +9,7 @@ import { cat } from './handlers/cat.js';
 import { add } from './handlers/add.js';
 import { rn } from './handlers/rn.js';
 import { cp } from './handlers/cp.js';
+import { mv } from './handlers/mv.js';
 
 function app() {
   const rl = readline.createInterface({
@@ -25,7 +26,7 @@ function app() {
   rl.prompt()
 
   rl.on('line', (input) => {
-    switch (input) {
+    switch (input.split(' ')[0]) {
       case '.exit':
         rl.close();
         break;
@@ -35,7 +36,7 @@ function app() {
         rl.prompt();
         break;
 
-      case input.startsWith('cd '):
+      case 'cd':
         cd(input);
         rl.prompt();
         break;
@@ -45,23 +46,28 @@ function app() {
         rl.prompt();
         break;
 
-      case input.startsWith('cat '):
+      case 'cat':
         cat(input);
         rl.prompt();
         break;
 
-      case input.startsWith('add '):
+      case 'add':
         add(input);
         rl.prompt();
         break;
 
-      case input.startsWith('rn '):
+      case 'rn':
         rn(input);
         rl.prompt();
         break;
 
-      case input.startsWith('cp '):
+      case 'cp':
         cp(input);
+        rl.prompt();
+        break;
+
+      case 'mv':
+        mv(input);
         rl.prompt();
         break;
 
