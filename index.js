@@ -10,6 +10,7 @@ import { add } from './handlers/add.js';
 import { rn } from './handlers/rn.js';
 import { cp } from './handlers/cp.js';
 import { mv } from './handlers/mv.js';
+import { rm } from './handlers/rm.js';
 
 function app() {
   const rl = readline.createInterface({
@@ -68,6 +69,10 @@ function app() {
 
       case 'mv':
         mv(input);
+        rl.prompt();
+        break;
+      case 'rm':
+        rm(input);
         rl.prompt();
         break;
 
