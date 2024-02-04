@@ -1,7 +1,4 @@
 
-import { open, unlink } from 'fs/promises';
-import { pipeline } from 'stream/promises';
-import { basename, join } from 'path';
 import { cp } from './cp.js';
 import { rm } from './rm.js';
 
