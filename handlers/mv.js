@@ -2,7 +2,8 @@
 import { open, unlink } from 'fs/promises';
 import { pipeline } from 'stream/promises';
 import { basename, join } from 'path';
-import {cp} from './cp.js'
+import { cp } from './cp.js';
+import { rm } from './rm.js';
 
 export const mv = async (input) => {
 
@@ -11,7 +12,7 @@ export const mv = async (input) => {
 
   await cp(input);
 
-  await unlink(filePath);
+  await rm(input);
 
   console.log(`file ${filePath} moved to ${copyDirPath}`);
 }
