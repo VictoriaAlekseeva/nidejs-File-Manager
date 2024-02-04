@@ -6,7 +6,8 @@ import { fileURLToPath } from 'url';
 import { chdir } from 'process';
 import { up } from './handlers/up.js';
 import {cd} from './handlers/cd.js';
-import {ls} from './handlers/ls.js'
+import {ls} from './handlers/ls.js';
+import {cat} from './handlers/cat.js';
 
 function app() {
   const rl = readline.createInterface({
@@ -31,6 +32,8 @@ function app() {
       cd(input);
     } if (input === 'ls') {
       ls();
+    } if (input.startsWith('cat ')) {
+      cat(input);
     } else {
       console.log('input:', input);
       console.log(`You are currently in ${currentDir}`)

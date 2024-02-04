@@ -1,7 +1,7 @@
 import {relative} from 'path';
 import { existsSync } from 'fs';
 
-export const goToFolder = (input) => {
+export const cd = (input) => {
   const currentFolder = process.cwd();
   const destFolder = input.split(' ')[1];
   const pathToFolder = relative(currentFolder, destFolder);
