@@ -1,7 +1,7 @@
 
 import { open } from 'fs/promises';
 import { pipeline } from 'stream/promises';
-import { relative, basename, join } from 'path';
+import { basename, join } from 'path';
 
 export const cp = async (input) => {
 
