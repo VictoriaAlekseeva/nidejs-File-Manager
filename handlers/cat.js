@@ -1,5 +1,5 @@
 import { open } from 'fs/promises';
-import {relative, resolve} from 'path';
+import {relative} from 'path';
 
 export const cat = async (input) => {
 

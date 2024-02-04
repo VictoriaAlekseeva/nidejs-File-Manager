@@ -1,13 +1,14 @@
 import { getUsername } from './helpers/getUsername.js';
 import readline from 'readline';
-import {homedir} from 'os';
+import { homedir } from 'os';
 import { chdir } from 'process';
 import { up } from './handlers/up.js';
-import {cd} from './handlers/cd.js';
-import {ls} from './handlers/ls.js';
-import {cat} from './handlers/cat.js';
+import { cd } from './handlers/cd.js';
+import { ls } from './handlers/ls.js';
+import { cat } from './handlers/cat.js';
 import { add } from './handlers/add.js';
 import { rn } from './handlers/rn.js';
+import { cp } from './handlers/cp.js';
 
 function app() {
   const rl = readline.createInterface({
@@ -28,19 +29,27 @@ function app() {
       rl.close();
     } else if (input === 'up') {
       up();
+      rl.prompt();
     } else if (input.startsWith('cd ')) {
       cd(input);
-    } if (input === 'ls') {
+      rl.prompt();
+    } else if (input === 'ls') {
       ls();
-    } if (input.startsWith('cat ')) {
+      rl.prompt();
+    } else if (input.startsWith('cat ')) {
       cat(input);
-    } if (input.startsWith('add ')) {
-      add(input)
-    } if (input.startsWith('rn ')) {
-      rn(input)
+      rl.prompt();
+    } else if (input.startsWith('add ')) {
+      add(input);
+      rl.prompt();
+    } else if (input.startsWith('rn ')) {
+      rn(input);
+      rl.prompt();
+    } else if (input.startsWith('cp ')) {
+      cp(input);
+      rl.prompt();
     } else {
-      console.log('input:', input);
-      console.log(`You are currently in ${currentDir}`)
+      console.log(`You are currently in ${process.cwd()}`)
       rl.prompt();
     }
   });

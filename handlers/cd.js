@@ -8,6 +8,5 @@ export const cd = (input) => {
 
   if (existsSync(pathToFolder)) process.chdir(pathToFolder);
 
-  console.log(`goToFolder: You are currently in ${process.cwd()}!!!!`)
-  //! если нет папки выше или папка не существует, сделать вывод информации
+  // console.log(`goToFolder: You are currently in ${process.cwd()}!!!!`)
 }
