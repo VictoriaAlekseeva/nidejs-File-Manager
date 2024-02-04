@@ -25,32 +25,49 @@ function app() {
   rl.prompt()
 
   rl.on('line', (input) => {
-    if (input === '.exit') {
-      rl.close();
-    } else if (input === 'up') {
-      up();
-      rl.prompt();
-    } else if (input.startsWith('cd ')) {
-      cd(input);
-      rl.prompt();
-    } else if (input === 'ls') {
-      ls();
-      rl.prompt();
-    } else if (input.startsWith('cat ')) {
-      cat(input);
-      rl.prompt();
-    } else if (input.startsWith('add ')) {
-      add(input);
-      rl.prompt();
-    } else if (input.startsWith('rn ')) {
-      rn(input);
-      rl.prompt();
-    } else if (input.startsWith('cp ')) {
-      cp(input);
-      rl.prompt();
-    } else {
-      console.log(`You are currently in ${process.cwd()}`)
-      rl.prompt();
+    switch (input) {
+      case '.exit':
+        rl.close();
+        break;
+
+      case 'up':
+        up();
+        rl.prompt();
+        break;
+
+      case input.startsWith('cd '):
+        cd(input);
+        rl.prompt();
+        break;
+
+      case 'ls':
+        ls();
+        rl.prompt();
+        break;
+
+      case input.startsWith('cat '):
+        cat(input);
+        rl.prompt();
+        break;
+
+      case input.startsWith('add '):
+        add(input);
+        rl.prompt();
+        break;
+
+      case input.startsWith('rn '):
+        rn(input);
+        rl.prompt();
+        break;
+
+      case input.startsWith('cp '):
+        cp(input);
+        rl.prompt();
+        break;
+
+      default:
+        console.log(`You are currently in ${process.cwd()}`)
+        rl.prompt();
     }
   });
 
