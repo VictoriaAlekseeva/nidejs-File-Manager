@@ -1,14 +1,13 @@
 import { getUsername } from './helpers/getUsername.js';
 import readline from 'readline';
 import {homedir} from 'os';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
 import { chdir } from 'process';
 import { up } from './handlers/up.js';
 import {cd} from './handlers/cd.js';
 import {ls} from './handlers/ls.js';
 import {cat} from './handlers/cat.js';
 import { add } from './handlers/add.js';
+import { rn } from './handlers/rn.js';
 
 function app() {
   const rl = readline.createInterface({
@@ -37,7 +36,9 @@ function app() {
       cat(input);
     } if (input.startsWith('add ')) {
       add(input)
-    }else {
+    } if (input.startsWith('rn ')) {
+      rn(input)
+    } else {
       console.log('input:', input);
       console.log(`You are currently in ${currentDir}`)
       rl.prompt();
