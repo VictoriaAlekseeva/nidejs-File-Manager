@@ -5,20 +5,15 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { chdir } from 'process';
 import { up } from './handlers/up.js';
-import {goToFolder} from './handlers/goToFolder.js';
+import {cd} from './handlers/cd.js';
 import {ls} from './handlers/ls.js'
 
 function app() {
-
-
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     prompt: '> '
   });
-
-  const __filename = fileURLToPath(import.meta.url);
-  // const workingDerectoryPath = dirname(__filename);
 
   let currentDir = homedir();
   chdir(currentDir);
@@ -33,7 +28,7 @@ function app() {
     } else if (input === 'up') {
       up();
     } else if (input.startsWith('cd ')) {
-      goToFolder(input);
+      cd(input);
     } if (input === 'ls') {
       ls();
     } else {
