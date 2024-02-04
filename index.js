@@ -1,10 +1,13 @@
 import { getUsername } from './helpers/getUsername.js';
 import readline from 'readline';
+import {homedir} from 'os';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+import { chdir } from 'process';
+import { up } from './handlers/up.js';
 
 function app() {
 
-  const userName = getUsername();
-  console.log(`Welcome to the File Manager, ${userName}!`);
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -12,11 +15,24 @@ function app() {
     prompt: '> '
   });
 
+  const __filename = fileURLToPath(import.meta.url);
+  // const workingDerectoryPath = dirname(__filename);
+
+  let currentDir = homedir();
+  chdir(currentDir);
+
+  const userName = getUsername();
+  console.log(`Welcome to the File Manager, ${userName}!`);
+  rl.prompt()
+
   rl.on('line', (input) => {
     if (input === '.exit') {
       rl.close();
+    } else if (input === 'up') {
+      up();
     } else {
       console.log('input:', input);
+      console.log(`You are currently in ${currentDir}`)
       rl.prompt();
     }
   });
