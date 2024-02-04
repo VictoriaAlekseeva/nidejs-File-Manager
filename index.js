@@ -5,7 +5,8 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { chdir } from 'process';
 import { up } from './handlers/up.js';
-import {goToFolder} from './handlers/goToFolder.js'
+import {goToFolder} from './handlers/goToFolder.js';
+import {ls} from './handlers/ls.js'
 
 function app() {
 
@@ -33,6 +34,8 @@ function app() {
       up();
     } else if (input.startsWith('cd ')) {
       goToFolder(input);
+    } if (input === 'ls') {
+      ls();
     } else {
       console.log('input:', input);
       console.log(`You are currently in ${currentDir}`)
