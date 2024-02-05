@@ -16,6 +16,10 @@ import { calculateHash } from './handlers/calculateHash.js';
 import { compress } from './handlers/compress.js';
 import { decompress } from './handlers/decompress.js';
 
+import { getCurrentDir } from './helpers/getCurrentDir.js';
+import {userGreeting} from './helpers/userGreeting.js';
+
+
 function app() {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -23,12 +27,8 @@ function app() {
     prompt: '> '
   });
 
-  let currentDir = homedir();
-  chdir(currentDir);
-
-  const userName = getUsername();
-  console.log(`Welcome to the File Manager, ${userName}!`);
-  rl.prompt()
+  userGreeting();
+  rl.prompt();
 
   rl.on('line', (input) => {
     const formattedInput = input.trim();
@@ -39,6 +39,7 @@ function app() {
 
       case 'up':
         up();
+        getCurrentDir();
         rl.prompt();
         break;
 
@@ -49,6 +50,7 @@ function app() {
 
       case 'ls':
         ls();
+        getCurrentDir();
         rl.prompt();
         break;
 
