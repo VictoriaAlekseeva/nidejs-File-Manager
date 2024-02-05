@@ -1,8 +1,9 @@
 import os from 'os';
+import { invaildInput } from '../constants/constants.js';
 
-export const osData = async (input) => {
+export const osData = (input) => {
 
-  const command = input.split(' ')[1];
+  const command = input.slice(3).trim();
 
   switch (command) {
     case '--EOL':
@@ -22,5 +23,7 @@ export const osData = async (input) => {
     case '--architecture':
       console.log('os.architecture: ', os.arch());
       break;
+    default:
+      invaildInput();
   }
 }

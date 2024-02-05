@@ -13,8 +13,6 @@ import { compress } from './compress.js';
 import { decompress } from './decompress.js';
 import { invaildInput } from '../constants/constants.js';
 
-import { getCurrentDir } from '../helpers/getCurrentDir.js';
-
 export const commandHandler = async (input) => {
   const formattedInput = input.trim();
   switch (formattedInput.split(' ')[0]) {
