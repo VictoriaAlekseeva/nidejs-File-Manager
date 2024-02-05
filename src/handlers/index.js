@@ -39,7 +39,7 @@ export const commandHandler = async (input) => {
       break;
 
     case 'rn':
-      rn(formattedInput);
+      await rn(formattedInput);
       break;
 
     case 'cp':

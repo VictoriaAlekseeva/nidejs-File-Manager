@@ -1,18 +1,21 @@
 import { rename } from 'fs/promises';
-import { dirname, join, relative } from 'path';
+import { dirname, join } from 'path';
+import { existsSync } from 'fs';
+import { getRelativaPath } from '../helpers/getRelativePath.js'
 
 export const rn = async (input) => {
-  //!обрабытвать имена с пробелами?
-
   try {
-    const currentFolder = process.cwd();
     const destFile = input.split(' ')[1];
     const newFileName = input.split(' ')[2];
-    const relativePathToFile = relative(currentFolder, destFile);
-    const pathToNewFile = join(dirname(relativePathToFile), newFileName)
-    await rename(relativePathToFile, pathToNewFile);
+
+    const pathToFile = getRelativaPath(destFile);
+
+    if (!existsSync(pathToFile)) throw new Error('Invalid input: no such file');
+    
+    const pathToNewFile = join(dirname(pathToFile), newFileName)
+    await rename(pathToFile, pathToNewFile);
     console.log(`File ${destFile} has been renamed to ${pathToNewFile}.`);
   } catch (err) {
-    console.error(err);
+    console.error(err.message);
   }
 };
