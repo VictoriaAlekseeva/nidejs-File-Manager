@@ -3,7 +3,7 @@ import { getRelativaPath } from '../helpers/getRelativePath.js'
 
 export const cd = (input) => {
   try {
-    const destFolder = input.slice(3);
+    const destFolder = input.slice(3).trim();
     const pathToFolder = getRelativaPath(destFolder);
 
     if (existsSync(pathToFolder)) {
