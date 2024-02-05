@@ -11,6 +11,7 @@ import { osData } from './osData.js';
 import { calculateHash } from './calculateHash.js';
 import { compress } from './compress.js';
 import { decompress } from './decompress.js';
+import { invaildInput } from '../constants/constants.js';
 
 import { getCurrentDir } from '../helpers/getCurrentDir.js';
 
@@ -64,7 +65,7 @@ export const commandHandler = async (input) => {
       decompress(formattedInput);
       break;
     default:
-      console.error('Check command format');
+      invaildInput();
   }
 
 }

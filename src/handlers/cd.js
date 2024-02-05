@@ -1,12 +1,15 @@
-import {relative} from 'path';
 import { existsSync } from 'fs';
+import { getRelativaPath } from '../helpers/getRelativePath.js'
 
 export const cd = (input) => {
-  const currentFolder = process.cwd();
-  const destFolder = input.split(' ')[1];
-  const pathToFolder = relative(currentFolder, destFolder);
+  try {
+    const destFolder = input.slice(3);
+    const pathToFolder = getRelativaPath(destFolder);
 
-  if (existsSync(pathToFolder)) process.chdir(pathToFolder);
-
-  // console.log(`goToFolder: You are currently in ${process.cwd()}!!!!`)
+    if (existsSync(pathToFolder)) {
+      process.chdir(pathToFolder)
+    } else throw new Error('Invalid input: no such directory');
+  } catch (err) {
+    console.error(err.message)
+  }
 }

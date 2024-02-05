@@ -1,0 +1,1 @@
+export const invaildInput = () => console.error('Invalid input');
