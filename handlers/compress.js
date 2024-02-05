@@ -10,10 +10,10 @@ export const compress = async (input) => {
   const destPath = input.split(' ')[2];
 
   const sourceFileName = path.win32.basename(sourcePath);
-  const sourceFileDir = path.dirname(sourcePath);
-  const brotliFileName = `${sourceFileName.split('.')[0]}.br`;
+  // const sourceFileDir = path.dirname(sourcePath);
+  const brotliFileName = `${sourceFileName}.br`;
   const destFilePath = path.join(destPath, brotliFileName);
-  console.log(sourceFileName, sourceFileDir, destFilePath)
+  // console.log(sourceFileName, sourceFileDir, destFilePath)
 
   const sourceStream = await open(sourcePath, 'r');
   const destStream = await open(destFilePath, 'wx');

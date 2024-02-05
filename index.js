@@ -14,6 +14,7 @@ import { rm } from './handlers/rm.js';
 import { osData } from './handlers/osData.js';
 import { calculateHash } from './handlers/calculateHash.js';
 import { compress } from './handlers/compress.js';
+import { decompress } from './handlers/decompress.js';
 
 function app() {
   const rl = readline.createInterface({
@@ -89,6 +90,10 @@ function app() {
         break;
       case 'compress':
         compress(formattedInput);
+        rl.prompt;
+        break;
+      case 'decompress':
+        decompress(formattedInput);
         rl.prompt;
         break;
       default:
