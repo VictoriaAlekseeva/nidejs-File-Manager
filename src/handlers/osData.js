@@ -1,6 +1,5 @@
 import os from 'os';
 
-
 export const osData = async (input) => {
 
   const command = input.split(' ')[1];
