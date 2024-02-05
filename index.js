@@ -13,6 +13,7 @@ import { mv } from './handlers/mv.js';
 import { rm } from './handlers/rm.js';
 import { osData } from './handlers/osData.js';
 import { calculateHash } from './handlers/calculateHash.js';
+import { compress } from './handlers/compress.js';
 
 function app() {
   const rl = readline.createInterface({
@@ -85,6 +86,10 @@ function app() {
       case 'hash':
         calculateHash(formattedInput);
         rl.prompt();
+        break;
+      case 'compress':
+        compress(formattedInput);
+        rl.prompt;
         break;
       default:
         console.log(`You are currently in ${process.cwd()}`)
