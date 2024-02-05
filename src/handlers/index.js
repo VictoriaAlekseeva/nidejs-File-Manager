@@ -31,7 +31,7 @@ export const commandHandler = async (input) => {
       break;
 
     case 'cat':
-      cat(formattedInput);
+      await cat(formattedInput);
       break;
 
     case 'add':
