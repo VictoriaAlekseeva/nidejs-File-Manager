@@ -11,7 +11,7 @@ export const osData = async (input) => {
       break;
     case '--cpus':
       const cpuInfo = os.cpus();
-      cpuInfo.map(item => item.speed = item.speed / 1000);
+      cpuInfo.map(item => item.speed = `${(item.speed / 1000).toFixed(2)} GHz`);
       console.log('os.cpus: ', cpuInfo);
       break;
     case '--homedir':
