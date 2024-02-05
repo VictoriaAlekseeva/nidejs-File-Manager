@@ -11,7 +11,8 @@ import { rn } from './handlers/rn.js';
 import { cp } from './handlers/cp.js';
 import { mv } from './handlers/mv.js';
 import { rm } from './handlers/rm.js';
-import {osData} from './handlers/osData.js'
+import { osData } from './handlers/osData.js';
+import { calculateHash } from './handlers/calculateHash.js';
 
 function app() {
   const rl = readline.createInterface({
@@ -79,6 +80,10 @@ function app() {
         break;
       case 'os':
         osData(formattedInput);
+        rl.prompt();
+        break;
+      case 'hash':
+        calculateHash(formattedInput);
         rl.prompt();
         break;
       default:
