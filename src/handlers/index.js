@@ -20,6 +20,9 @@ export const commandHandler = async (input) => {
       up();
       break;
 
+    case '':
+      break;
+
     case 'cd':
       cd(formattedInput);
       break;
@@ -57,10 +60,10 @@ export const commandHandler = async (input) => {
       await calculateHash(formattedInput);
       break;
     case 'compress':
-      compress(formattedInput);
+      await compress(formattedInput);
       break;
     case 'decompress':
-      decompress(formattedInput);
+      await decompress(formattedInput);
       break;
     default:
       invaildInput();

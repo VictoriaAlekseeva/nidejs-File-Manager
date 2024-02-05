@@ -9,13 +9,16 @@ export const rn = async (input) => {
     const newFileName = input.split(' ')[2];
 
     const pathToFile = getRelativaPath(destFile);
+    const pathToNewFile = join(dirname(pathToFile), newFileName);
 
     if (!existsSync(pathToFile)) throw new Error('Invalid input: no such file');
-    
-    const pathToNewFile = join(dirname(pathToFile), newFileName)
+    if (existsSync(pathToNewFile)) throw new Error('Invalid input: file already exists')
+
     await rename(pathToFile, pathToNewFile);
     console.log(`File ${destFile} has been renamed to ${pathToNewFile}.`);
   } catch (err) {
-    console.error(err.message);
+    if (err.code === undefined) {
+      console.error(err.message)
+    } else throw new Error('Operation failed');
   }
 };

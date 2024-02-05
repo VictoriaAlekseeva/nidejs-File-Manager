@@ -17,6 +17,8 @@ export const calculateHash = async (input) => {
         readableStream.on("end", () => console.log(hash.digest('hex')));
         readableStream.on("error", (error) => console.error("Operation failed", error.message));
     } catch (err) {
-        console.log(err.message)
+        if (err.code === undefined) {
+            console.error(err.message)
+        } else throw new Error('Operation failed')
     }
 };

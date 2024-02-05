@@ -16,6 +16,8 @@ export const mv = async (input) => {
 
     console.log(`file ${filePath} moved to ${copyDirPath}`);
   } catch (err) {
-    console.error(err.message)
+    if (err.code === undefined) {
+      console.error(err.message)
+    } else throw new Error('Operation failed')
   }
 }

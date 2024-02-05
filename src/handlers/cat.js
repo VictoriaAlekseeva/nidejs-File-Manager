@@ -18,6 +18,8 @@ export const cat = async (input) => {
     readableStream.on("end", () => console.log(data));
     readableStream.on("error", (error) => console.error("Operation failed", error.message));
   } catch (err) {
-    console.error(err.message)
+    if (err.code === undefined) {
+      console.error(err.message)
+    } else throw new Error('Operation failed')
   }
 };

@@ -14,6 +14,6 @@ export const ls = async () => {
     console.log(`List of content in the ${currentDir} folder:`)
     console.table(sortedFolderList);
   } catch (err) {
-    console.error(err);
+    throw new Error('Operation failed')
   }
 };

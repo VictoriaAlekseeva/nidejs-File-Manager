@@ -10,6 +10,8 @@ export const cd = (input) => {
       process.chdir(pathToFolder)
     } else throw new Error('Invalid input: no such directory');
   } catch (err) {
-    console.error(err.message)
+    if (err.code === undefined) {
+      console.error(err.message)
+    } else throw new Error('Operation failed')
   }
 }

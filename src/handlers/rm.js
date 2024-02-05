@@ -8,6 +8,8 @@ export const rm = async (input) => {
     await unlink(filePath);
     console.log(`File ${filePath} has been deleted.`);
   } catch (error) {
-    console.error(error.message);
+    if (err.code === undefined) {
+      console.error(err.message)
+    } else throw new Error('Operation failed')
   }
 };

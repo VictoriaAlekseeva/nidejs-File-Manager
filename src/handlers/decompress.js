@@ -2,6 +2,7 @@ import path from 'path';
 import { createBrotliDecompress } from 'zlib';
 import { pipeline } from 'stream/promises';
 import { open } from 'fs/promises';
+import { existsSync } from 'fs';
 
 export const decompress = async (input) => {
 
@@ -11,11 +12,13 @@ export const decompress = async (input) => {
 
     const sourceFileName = path.win32.basename(sourcePath);
     const sourceFileNameExtention = path.extname(sourceFileName);
-    if (sourceFileNameExtention !== '.br') throw new Error('Brotli compressed file has to have .br extention');
-
     const brotliFileName = sourceFileName.slice(0, -3);
     const destFilePath = path.join(destPath, brotliFileName);
-    console.log(sourceFileName, destFilePath);
+
+    if (sourceFileNameExtention !== '.br') throw new Error('Invalid input: Brotli compressed file has to have .br extention');
+    if (!existsSync(sourcePath)) throw new Error('Invalid input: no such file');
+    if (!existsSync(destPath)) throw new Error('Invalid input: no such directory');
+    if (existsSync(destFilePath)) throw new Error('Invalid input: file already exists');
 
     const sourceStream = await open(sourcePath, 'r');
     const destStream = await open(destFilePath, 'wx');
@@ -26,7 +29,9 @@ export const decompress = async (input) => {
 
     await pipeline(source, brotli, destination);
   } catch (err) {
-    console.error(err)
+    if (err.code === undefined) {
+      console.error(err.message)
+    } else throw new Error('Operation failed')
   }
 
 }
