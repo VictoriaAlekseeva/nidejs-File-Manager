@@ -11,6 +11,7 @@ import { rn } from './handlers/rn.js';
 import { cp } from './handlers/cp.js';
 import { mv } from './handlers/mv.js';
 import { rm } from './handlers/rm.js';
+import {osData} from './handlers/osData.js'
 
 function app() {
   const rl = readline.createInterface({
@@ -27,7 +28,8 @@ function app() {
   rl.prompt()
 
   rl.on('line', (input) => {
-    switch (input.split(' ')[0]) {
+    const formattedInput = input.trim();
+    switch (formattedInput.split(' ')[0]) {
       case '.exit':
         rl.close();
         break;
@@ -38,7 +40,7 @@ function app() {
         break;
 
       case 'cd':
-        cd(input);
+        cd(formattedInput);
         rl.prompt();
         break;
 
@@ -48,34 +50,37 @@ function app() {
         break;
 
       case 'cat':
-        cat(input);
+        cat(formattedInput);
         rl.prompt();
         break;
 
       case 'add':
-        add(input);
+        add(formattedInput);
         rl.prompt();
         break;
 
       case 'rn':
-        rn(input);
+        rn(formattedInput);
         rl.prompt();
         break;
 
       case 'cp':
-        cp(input);
+        cp(formattedInput);
         rl.prompt();
         break;
 
       case 'mv':
-        mv(input);
+        mv(formattedInput);
         rl.prompt();
         break;
       case 'rm':
-        rm(input);
+        rm(formattedInput);
         rl.prompt();
         break;
-
+      case 'os':
+        osData(formattedInput);
+        rl.prompt();
+        break;
       default:
         console.log(`You are currently in ${process.cwd()}`)
         rl.prompt();
