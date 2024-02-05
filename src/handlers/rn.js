@@ -19,6 +19,6 @@ export const rn = async (input) => {
   } catch (err) {
     if (err.code === undefined) {
       console.error(err.message)
-    } else throw new Error('Operation failed');
+    } else throw console.error('Operation failed');
   }
 };

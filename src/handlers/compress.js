@@ -31,7 +31,7 @@ export const compress = async (input) => {
   } catch (err) {
     if (err.code === undefined) {
       console.error(err.message)
-    } else throw new Error('Operation failed')
+    } else console.error('Operation failed')
   }
 
 }

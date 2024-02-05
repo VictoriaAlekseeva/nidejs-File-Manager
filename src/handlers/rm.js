@@ -7,9 +7,9 @@ export const rm = async (input) => {
     if (!existsSync(filePath)) throw new Error('Invalid input: no such file');
     await unlink(filePath);
     console.log(`File ${filePath} has been deleted.`);
-  } catch (error) {
+  } catch (err) {
     if (err.code === undefined) {
       console.error(err.message)
-    } else throw new Error('Operation failed')
+    } else console.error ('Operation failed')
   }
 };

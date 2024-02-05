@@ -5,6 +5,6 @@ export const add = async (input) => {
     const newFileName = input.substring(4).trim();
     await open(newFileName, 'wx');
   } catch (err) {
-    throw new Error('Operation failed')
+    console.error('Operation failed')
   }
 }
