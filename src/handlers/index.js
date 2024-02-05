@@ -50,7 +50,7 @@ export const commandHandler = async (input) => {
       await mv(formattedInput);
       break;
     case 'rm':
-      rm(formattedInput);
+      await rm(formattedInput);
       break;
     case 'os':
       osData(formattedInput);
