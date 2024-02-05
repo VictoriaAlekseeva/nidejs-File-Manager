@@ -43,7 +43,7 @@ export const commandHandler = async (input) => {
       break;
 
     case 'cp':
-      cp(formattedInput);
+      await cp(formattedInput);
       break;
 
     case 'mv':
