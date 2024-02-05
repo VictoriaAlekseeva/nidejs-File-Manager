@@ -54,7 +54,7 @@ export const commandHandler = async (input) => {
       osData(formattedInput);
       break;
     case 'hash':
-      calculateHash(formattedInput);
+      await calculateHash(formattedInput);
       break;
     case 'compress':
       compress(formattedInput);

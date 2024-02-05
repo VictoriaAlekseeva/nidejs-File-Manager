@@ -1,16 +1,22 @@
-import { createReadStream } from 'node:fs';
+import { open } from 'fs/promises';
 import { createHash } from 'crypto';
+import { existsSync } from 'fs';
 
 export const calculateHash = async (input) => {
-    const hash = createHash('sha256');
-    const filePath = input.slice(5)
-    const file = createReadStream(filePath);
-    file.on('readable', () => {
-        const data = file.read();
-        if (data)
-            hash.update(data);
-        else {
-            console.log(hash.digest('hex'));
-        }
-    })
+    try {
+        const filePath = input.slice(5).trim();
+
+        if (!existsSync(filePath)) throw new Error('Invalid input: no such file');
+
+        const hash = createHash('sha256');
+        const fd = await open(filePath);
+
+        const readableStream = fd.createReadStream(filePath);
+
+        readableStream.on("data", (chunk) => hash.update(chunk));
+        readableStream.on("end", () => console.log(hash.digest('hex')));
+        readableStream.on("error", (error) => console.error("Operation failed", error.message));
+    } catch (err) {
+        console.log(err.message)
+    }
 };
