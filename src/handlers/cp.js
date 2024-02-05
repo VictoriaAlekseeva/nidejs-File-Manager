@@ -22,6 +22,6 @@ export const cp = async (input) => {
 
     await pipeline(readableStream, writableStream);
   } catch (err) {
-    console.error(err.message)
+    console.error(err.message);
   }
 }

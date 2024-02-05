@@ -1,15 +1,21 @@
-
+import { existsSync } from 'fs';
 import { cp } from './cp.js';
 import { rm } from './rm.js';
 
 export const mv = async (input) => {
 
-  const filePath = input.split(' ')[1];
-  const copyDirPath = input.split(' ')[2];
+  try {
+    const filePath = input.split(' ')[1];
+    const copyDirPath = input.split(' ')[2];
 
-  await cp(input);
+    if (!existsSync(filePath) || !existsSync(copyDirPath)) throw new Error('Invalid input: no such file or directory');
 
-  await rm(input);
+    await cp(input);
 
-  console.log(`file ${filePath} moved to ${copyDirPath}`);
+    await rm(input);
+
+    console.log(`file ${filePath} moved to ${copyDirPath}`);
+  } catch (err) {
+    console.error(err.message)
+  }
 }

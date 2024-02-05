@@ -47,7 +47,7 @@ export const commandHandler = async (input) => {
       break;
 
     case 'mv':
-      mv(formattedInput);
+      await mv(formattedInput);
       break;
     case 'rm':
       rm(formattedInput);
